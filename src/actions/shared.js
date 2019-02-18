@@ -8,7 +8,7 @@ import Logins from '../components/Logins'
 
 
 
-const AUTHED_ID='tylermcginnis'
+const AUTHED_ID='johndoe'
 
 export function handleInitialData(){
   return(dispatch)=>{

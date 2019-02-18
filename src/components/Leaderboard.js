@@ -1,23 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component,Fragment } from 'react'
 import {connect} from 'react-redux'
 import {formatQuestion,formatDate} from '../utils/helpers'
 
 
 class Leaderboard extends Component {
   render() {
-    const {question}=this.props
+    const {question,users}=this.props
     const{
         name,avatar,timestamp,optionOne
         ,optionTwo,optionOneVotes,
         optionOneText,optionTwoVotes
-        ,optionTwoText,answers,questions
-      }=question
+        ,optionTwoText,questions, answers
+      }=this.props.question
 
     return (
-
+     
 
       <div className='question'>
-
          <img
           src={avatar}
           alt={`Avatar of ${name}`}
@@ -42,19 +41,21 @@ class Leaderboard extends Component {
         </div>
        </div>
 
+
+
     )
   }
 }
 
 function mapStateToProps ({authedUser, users, questions}, { id }) {
   const question = questions[id];
-
+  const keys = Object.keys(users)
 
   return {
     authedUser,
-    users,
+    users: keys.map(user => users[user]),
     question: question
-      ? formatQuestion(question, users[question.author], authedUser)
+      ?formatQuestion(question, users[question.author], authedUser)
       : null
   };
 }

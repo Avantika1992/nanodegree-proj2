@@ -11,6 +11,8 @@ import QuestionPage from './QuestionPage'
 import Nav from './Nav'
 import Poll from './Poll'
 import UserQuestion from './UserQuestion'
+import AnsweredQuestions from './AnsweredQuestions'
+import UnansweredQuestions from './UnansweredQuestions'
 
 class App extends Component {
   componentDidMount(){
@@ -27,13 +29,18 @@ class App extends Component {
           ?null
           :<div>
              <Route path='/' exact component={Home} />
-             <Route path='/newQuestion' exact component={NewQuestion} />
+             <Route path='/newQuestion' exact component={UserQuestion} />
              {this.props.questionIds.map((id)=>(
              <Route path='/leaderBoard' exact component={()=><LeaderBoard id={id}/>} />
               ))}
              <Route path='/logins' exact component={Logins} />
              <Route path='/Poll' exact component={Poll} />
-
+             {this.props.questionIds.map((id)=>(
+             <Route path='/ansque' exact component={()=><AnsweredQuestions id={id}/>} />
+             ))}
+             {this.props.questionIds.map((id)=>(
+             <Route path='/unansque' exact component={()=><UnansweredQuestions id={id}/>} />
+              ))}
            </div>}
       </div>
       </Fragment>
@@ -43,10 +50,10 @@ class App extends Component {
 }
 
 function mapStateToProps({authedUser,questions,users},state){
+  const keys = Object.keys(users)
   return {
-
+  users: keys.map(user => users[user]),
   loading:authedUser===null,
-  users:Object.values(users),
   questionIds:Object.keys(questions)
   .sort((a,b)=>questions[b].timestamp-questions[a].timestamp)
   }

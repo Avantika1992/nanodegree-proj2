@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import Question from './Question'
 import Leaderboard from './Leaderboard'
 import Logins from './Logins'
+import {NavLink} from 'react-router-dom'
+import UnansQuestion from './UnansweredQuestions'
+import AnsQuestion from './AnsweredQuestions'
 
 class Home extends Component {
   render() {
@@ -11,26 +14,27 @@ class Home extends Component {
 
       <div>
         <h3 className='center'>Home</h3>
-        <button className='button'>Answered Questions</button>
-        <button className='button'>Unanswered Questions</button>
-        <ul>
+        <NavLink to='/ansque' exact activeClassName='active'><button className='button'>Answered Questions</button></NavLink>
+        <NavLink to='/unansque' exact activeClassName='active'><button className='button'>Unanswered Questions</button></NavLink>
+        {/*<ul>
           {this.props.questionIds.map((id,optionOne)=>(
             <li key={id}>
-              <Question id={id} />
+              <UnansQuestion id={id} />
 
             </li>
           ))}
-        </ul>
+        </ul>*/}
 
       </div>
     )
   }
 }
 
-function mapStateToProps({questions}){
+function mapStateToProps({users,questions}){
   return {
     questionIds:Object.keys(questions)
-    .sort((a,b)=>questions[b].timestamp-questions[a].timestamp)
+    .sort((a,b)=>questions[b].timestamp-questions[a].timestamp),
+
   }
 }
 

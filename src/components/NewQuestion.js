@@ -17,7 +17,7 @@ class NewQuestion extends Component {
 
   handleSubmit=(e)=>{
     e.preventDefault();
-    this.props.dispatch(handleAddQuestion(this.state.optionOneText,this.state.optionTwoText))
+    handleAddQuestion(this.state.optionOneText,this.state.optionTwoTex)
     console.log(this.state.optionOneText,this.state.optionTwoText)
     this.setState({optionOneText:'',optionTwoText:''})
   }

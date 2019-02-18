@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component,Fragment } from 'react'
 import {connect} from 'react-redux'
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import {formatQuestion,formatDate} from '../utils/helpers'
-import Question from './Question'
-import NewQuestion from './NewQuestion'
-import {Link} from 'react-router-dom'
 
-class Poll extends Component {
+class AnsQuestion extends Component {
 
   render() {
     const {question}=this.props
+    const {authedUser}=this.props
     const{
         name,avatar,timestamp,optionOne
         ,optionTwo,optionOneVotes,
@@ -16,13 +15,17 @@ class Poll extends Component {
         ,optionTwoText,id,
       }=question
     return (
+
       <div className='question'>
+
+      {Object.values(optionOneVotes).indexOf(authedUser) > -1||Object.values(optionTwoVotes).indexOf(authedUser) > -1?
+        <div>
          <img
           src={avatar}
           alt={`Avatar of ${name}`}
           className='avatar'
           />
-          &emsp;
+
         <div className='verticalLine'>
           &emsp;<b>{name} asks:</b>
           <br/>
@@ -39,9 +42,12 @@ class Poll extends Component {
 
           </div>
         </div>
+        </div>:null
+      }
        </div>
 
     )
+
   }
 }
 
@@ -57,4 +63,5 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
   };
 }
 
-export default connect(mapStateToProps)(Poll)
+
+export default connect(mapStateToProps)(AnsQuestion)
