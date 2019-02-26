@@ -1,11 +1,21 @@
 import React, { Component,Fragment } from 'react'
 import {connect} from 'react-redux'
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Link,Redirect} from 'react-router-dom'
 import {formatQuestion,formatDate} from '../utils/helpers'
+import {NavLink} from 'react-router-dom'
 
 class AnsQuestion extends Component {
-
+  state={pollViewed:false}
+  pollHandler=(e)=>{
+    e.preventDefault()
+    console.log(this.props.id)
+    this.setState({pollViewed:true})
+  }
   render() {
+    if(this.state.pollViewed){
+      const route = "/que/" + this.props.id
+    return <Redirect to={route} />
+  }
     const {question}=this.props
     const {authedUser}=this.props
     const{
@@ -17,7 +27,7 @@ class AnsQuestion extends Component {
     return (
 
       <div className='question'>
-
+      
       {Object.values(optionOneVotes).indexOf(authedUser) > -1||Object.values(optionTwoVotes).indexOf(authedUser) > -1?
         <div>
          <img
@@ -32,13 +42,14 @@ class AnsQuestion extends Component {
           <div className='horizontalLine'>
           &emsp;Would You Rather
           <br/>
-          <input type="radio" name='ip' />{optionOneText}
+          {optionOneText}
           &emsp;-votes:{optionOneVotes}
           <br/>
-          <input type="radio" name='ip' />{optionTwoText}
+          {optionTwoText}
           &emsp;-votes:{optionTwoVotes}
           <br/>
-          <Link to='/Poll'><button>view poll</button></Link>
+          <br/>
+          <button onClick={this.pollHandler}>view poll</button>
 
           </div>
         </div>

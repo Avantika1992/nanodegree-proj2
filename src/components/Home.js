@@ -5,7 +5,7 @@ import Leaderboard from './Leaderboard'
 import Logins from './Logins'
 import {NavLink} from 'react-router-dom'
 import UnansQuestion from './UnansweredQuestions'
-import AnsQuestion from './AnsweredQuestions'
+import Polls from './Polls'
 
 class Home extends Component {
   render() {
@@ -16,15 +16,9 @@ class Home extends Component {
         <h3 className='center'>Home</h3>
         <NavLink to='/ansque' exact activeClassName='active'><button className='button'>Answered Questions</button></NavLink>
         <NavLink to='/unansque' exact activeClassName='active'><button className='button'>Unanswered Questions</button></NavLink>
-        {/*<ul>
           {this.props.questionIds.map((id,optionOne)=>(
-            <li key={id}>
-              <UnansQuestion id={id} />
-
-            </li>
+              <UnansQuestion id={id}/>
           ))}
-        </ul>*/}
-
       </div>
     )
   }

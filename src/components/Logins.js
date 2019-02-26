@@ -1,30 +1,37 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {setAuthedUser} from '../actions/authedUser'
 
 class Logins extends Component {
-  state={
-      user_selected:'null',
-    }
+  constructor(props) {
+   super(props);
+   this.state = {user_selected:'null'};
+
+   this.eventHandler = this.eventHandler.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this);
+ }
+
   eventHandler=(e)=>{
+  e.preventDefault();
   this.setState({user_selected:e.target.value})
 
     }
   handleSubmit=(e)=>{
     e.preventDefault();
-    this.setState({user_selected:e.target.value})
+    this.props.dispatch(setAuthedUser(this.state.user_selected))
     console.log(this.state.user_selected)
   }
 
   render() {
     return (
       <div className='center'>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit}>
         <select value={this.state.user_selected}
-        onChange={this.eventHandler.bind(this)} >
-         <option>Select User</option>
-         <option value="sarah_edo">sarah_edo</option>
+        onChange={this.eventHandler} >
+         <option hidden value=''></option>
+         <option value="sarahedo">sarahedo</option>
          <option value="tylermcginnis">tylermcginnis</option>
-         <option value="dan_abramov">dan_abramov</option>
+         <option value="johndoe">johndoe</option>
         </select>
         <br/>
         <br/>
@@ -37,4 +44,4 @@ class Logins extends Component {
 }
 
 
-export default Logins
+export default connect()(Logins)

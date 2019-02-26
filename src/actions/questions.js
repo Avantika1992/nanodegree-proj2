@@ -22,15 +22,15 @@ export function handleAddQuestion(optionOne,optionTwo){
   return(dispatch,getState)=>{
     const {authedUser}=getState()
     dispatch(showLoading())
-
     return saveQuestion({
 
-      optionOne,
-      optionTwo,
+      optionOneText:optionOne,
+      optionTwoText:optionTwo,
       author:authedUser,
 
     })
-    .then((question)=>dispatch(addQuestion(question)))
+    .then((question)=>{
+      dispatch(addQuestion(question))})
     .then(()=>dispatch(hideLoading()))
   }
 }

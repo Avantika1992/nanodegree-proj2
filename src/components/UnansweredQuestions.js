@@ -1,29 +1,27 @@
 import React, { Component,Fragment } from 'react'
 import {connect} from 'react-redux'
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Link,withRouter,Redirect} from 'react-router-dom'
 import {formatQuestion,formatDate} from '../utils/helpers'
 import {saveQuestionAnswer} from '../utils/api'
+import Polls from './Polls'
 
 class UnansQuestion extends Component {
 
-  state={value:''}
-  handleRadioButton(value) {
-    this.setState({
-      value: value
-    });
+  state={value:'', pollViewed:false}
+
+  pollHandler=(e)=>{
+    e.preventDefault()
+    console.log(this.props.id)
+    this.setState({pollViewed:true})
   }
 
-  handleSubmit=(e)=>{
-    e.preventDefault();
-    this.setState({value:this.state.value})
-    console.log('submitted,',this.props.authedUser,this.state.value)
-    saveQuestionAnswer({authedUser: this.props.authedUser,
-                       qid: this.props.question.id,
-                       answer: this.state.value
-})
-  }
+
 
   render() {
+    if(this.state.pollViewed){
+      const route = "/que/" + this.props.id
+    return <Redirect to={route} />
+  }
     const {question}=this.props
     const {authedUser}=this.props
     const {
@@ -59,26 +57,15 @@ class UnansQuestion extends Component {
           &emsp;Would You Rather
           <br/>
           <form onSubmit={this.handleSubmit}>
-          <input type="radio" name='ip' checked={this.state.value === optionOneText}
-    onChange={() => this.handleRadioButton(optionOneText)}/>{optionOneText}
+          {optionOneText}
           &emsp;-votes:{optionOneVotes}
           <br/>
-          <input type="radio" name='ip' checked={this.state.value === optionTwoText}
-    onChange={() => this.handleRadioButton(optionTwoText)}/>{optionTwoText}
+          {optionTwoText}
           &emsp;-votes:{optionTwoVotes}
-
           <br/>
           <br/>
-          {'Value Chosen:'}{this.state.value}
-
-          <br/>
-          <br/>
-          <input type='submit' name="submit"/>
-
           </form>
-          <br/>
-
-          <Link to='/Poll'><button>view poll</button></Link>
+          <button onClick={this.pollHandler}>view poll</button>
           </div>
         </div>
         </div>
@@ -94,6 +81,7 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
   const question = questions[id];
 
   return {
+
     authedUser,
     users,
     question: question
@@ -103,4 +91,4 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
 }
 
 
-export default connect(mapStateToProps)(UnansQuestion)
+export default withRouter(connect(mapStateToProps)(UnansQuestion))

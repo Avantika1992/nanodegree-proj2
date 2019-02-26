@@ -1,9 +1,10 @@
 import React, { Component,Fragment } from 'react'
 import {connect} from 'react-redux'
 import {handleAddQuestion} from '../actions/questions'
+import {Redirect} from 'react-router-dom'
 
 class UserQuestion extends Component {
-  state={optionOneText:'',optionTwoText:''}
+  state={optionOneText:'',optionTwoText:'',submittedQue:false}
 
   handleChangeOne=(e)=>{
     e.preventDefault();
@@ -18,12 +19,14 @@ class UserQuestion extends Component {
   handleSubmit=(e)=>{
     e.preventDefault();
     this.props.dispatch(handleAddQuestion(this.state.optionOneText,this.state.optionTwoText))
-    console.log(this.state.optionOneText,this.state.optionTwoText)
     this.setState({optionOneText:'',optionTwoText:''})
+    this.setState({submittedQue:true})
   }
 
   render() {
-
+    if(this.state.submittedQue){
+    return <Redirect to={'/'} />
+  }
     return (
       <div className='center'>
         <h2>Create new Question</h2>
@@ -36,11 +39,9 @@ class UserQuestion extends Component {
         <input value={this.state.optionTwoText} type='text' placeholder='Question option Two' onChange={this.handleChangeTwo}/>
         <br/>
         <br/>
-        <button type='submit'>Submit</button>
+        <button type='submit' disabled={!this.state.optionOneText || !this.state.optionTwoText}>Submit</button>
         </form>
-
       </div>
-
     )
   }
 }
