@@ -17,7 +17,7 @@ class Home extends Component {
         <NavLink to='/ansque' exact activeClassName='active'><button className='button'>Answered Questions</button></NavLink>
         <NavLink to='/unansque' exact activeClassName='active'><button className='button'>Unanswered Questions</button></NavLink>
           {this.props.questionIds.map((id,optionOne)=>(
-              <UnansQuestion id={id}/>
+              <li key={id}><UnansQuestion id={id}/></li>
           ))}
       </div>
     )

@@ -39,10 +39,10 @@ class App extends Component {
              <Route path='/logins' exact component={Logins} />
 
              {this.props.questionIds.map((id)=>(
-             <Route path='/ansque' exact component={()=><AnsweredQuestions id={id} key={id}/>} />
+             <Route path='/ansque' exact component=<li key={id}>{()=><AnsweredQuestions id={id} key={id}/>}</li> />
              ))}
              {this.props.questionIds.map((id)=>(
-             <Route path='/unansque' exact component={()=><UnansweredQuestions id={id} key={id}/>} />
+             <Route path='/unansque' exact component=<li key={id}>{()=><UnansweredQuestions id={id} key={id}/>}</li> />
               ))}
              <Route path="*" component={NotFound}/>
              </Switch>
