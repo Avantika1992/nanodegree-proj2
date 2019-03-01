@@ -28,7 +28,7 @@ class Nav extends Component {
       </li>
       <li>
        <NavLink to='/logins' exact activeClassName='active'>
-        Logout
+        Login/Logout
        </NavLink>
 
       </li>
