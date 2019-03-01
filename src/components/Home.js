@@ -9,7 +9,7 @@ import Polls from './Polls'
 
 class Home extends Component {
   render() {
-    console.log(this.props)
+    
     return (
 
       <div>

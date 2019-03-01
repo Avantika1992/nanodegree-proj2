@@ -21,7 +21,8 @@ class Question extends Component {
     console.log('submitted,',this.state.value)
     saveQuestionAnswer({authedUser: this.props.authedUser,
                        qid: this.props.question.id,
-                       answer:this.state.value}).then((res) => (
+                       answer:this.state.value})
+                       .then((res) => (
                         getInitialData().then((res)=>{
                           this.props.dispatch(receiveUsers(res.users))
                           this.props.dispatch(receiveQuestions(res.questions))
@@ -66,7 +67,7 @@ class Question extends Component {
           <input type="radio" name='ip'
     onChange={() => this.handleRadioButton('optionTwo')}/>{optionTwoText}
           &emsp;-votes:{optionTwoVotes}
-          &emsp;{optionTwoVotes.length} out of 3 votes:{(optwoVotes*100)/3}% 
+          &emsp;{optionTwoVotes.length} out of 3 votes:{(optwoVotes*100)/3}%
           <br/>
           <br/>
           {'Value Chosen:'}{this.state.value}

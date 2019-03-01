@@ -12,7 +12,7 @@ class Leaderboard extends Component {
     while (!done) {
       done = true;
       for (var i = 1; i < values.length; i += 1) {
-        if ((Object.keys(values[i - 1].answers).length+questions[values[i-1].id]) >
+        if ((Object.keys(values[i - 1].answers).length+questions[values[i-1].id]) <
            (Object.keys(values[i].answers).length+questions[values[i].id])) {
           done = false;
           var tmp = values[i - 1];

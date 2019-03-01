@@ -12,7 +12,7 @@ class Polls extends Component {
   render() {
     const {question}=this.props
     const {authedUser}=this.props
-  
+
     console.log(this.props.id)
     return (
 
