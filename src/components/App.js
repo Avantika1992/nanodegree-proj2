@@ -7,6 +7,7 @@ import Home from './Home'
 import LoadingBar from 'react-redux-loading'
 import LeaderBoard from './Leaderboard'
 import Logins from './Logins'
+import Logout from './logout'
 import QuestionPage from './QuestionPage'
 import Nav from './Nav'
 import Polls from './Polls'
@@ -38,7 +39,7 @@ class App extends Component {
              <Route path='/leaderBoard' exact component={()=><LeaderBoard users={this.props.users} questions={this.props.questions}/>} />
              <Route exact path="/questions/:id" component={Polls} />
              <Route path='/logins' exact component={empty} />
-
+             <Route path='/logout' exact component={Logout} />
              {this.props.questionIds.map((id)=>(
              <Route path='/ansque' exact component={()=><li key={id}><AnsQuestion id={id}/></li>} />
              ))}

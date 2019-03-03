@@ -9,14 +9,14 @@ import Polls from './Polls'
 
 class Home extends Component {
   render() {
-    
+
     return (
 
       <div>
         <h3 className='center'>Home</h3>
         <NavLink to='/ansque' exact activeClassName='active'><button className='button'>Answered Questions</button></NavLink>
         <NavLink to='/unansque' exact activeClassName='active'><button className='button'>Unanswered Questions</button></NavLink>
-          {this.props.questionIds.map((id,optionOne)=>(
+          {this.props.questionIds.map((id)=>(
               <li key={id}><UnansQuestion id={id}/></li>
           ))}
       </div>

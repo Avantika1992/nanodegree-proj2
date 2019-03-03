@@ -30,6 +30,7 @@ class Question extends Component {
                        ))
   }
   render() {
+    const numUsers=Object.keys(this.props.users).length
     const {question}=this.props
     const {authedUser}=this.props
     const{
@@ -62,12 +63,12 @@ class Question extends Component {
           <input type="radio" name='ip'
     onChange={() => this.handleRadioButton('optionOne')}/>{optionOneText}
           &emsp;-votes:{optionOneVotes}
-          &emsp;{optionOneVotes.length} out of 3 votes:{(oponeVotes*100)/3}%
+          &emsp;{optionOneVotes.length} out of {numUsers} votes:{(oponeVotes*100)/numUsers}%
           <br/>
           <input type="radio" name='ip'
     onChange={() => this.handleRadioButton('optionTwo')}/>{optionTwoText}
           &emsp;-votes:{optionTwoVotes}
-          &emsp;{optionTwoVotes.length} out of 3 votes:{(optwoVotes*100)/3}%
+          &emsp;{optionTwoVotes.length} out of {numUsers} votes:{(optwoVotes*100)/numUsers}%
           <br/>
           <br/>
           {'Value Chosen:'}{this.state.value}
