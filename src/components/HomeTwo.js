@@ -4,20 +4,19 @@ import Question from './Question'
 import Leaderboard from './Leaderboard'
 import Logins from './Logins'
 import {NavLink} from 'react-router-dom'
-import UnansQuestion from './UnansweredQuestions'
+import AnsQuestion from './AnsweredQuestions'
 import Polls from './Polls'
 
-class Home extends Component {
+class HomeTwo extends Component {
   render() {
 
     return (
 
       <div>
-        <h3 className='center'>UnAnswered Questions</h3>
-        <NavLink to='/ansque' exact activeClassName='active'><button className='button'>Answered Questions</button></NavLink>
-        <NavLink to='/unansque' exact activeClassName='active'><button className='button'>Unanswered Questions</button></NavLink>
+        <h3 className='center'>Answered Questions</h3>
+
           {this.props.questionIds.map((id)=>(
-              <li key={id}><UnansQuestion id={id}/></li>
+              <li key={id}><AnsQuestion id={id}/></li>
           ))}
       </div>
     )
@@ -33,4 +32,4 @@ function mapStateToProps({users,questions}){
 }
 
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(HomeTwo)

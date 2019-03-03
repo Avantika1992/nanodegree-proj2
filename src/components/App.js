@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {handleInitialData} from '../actions/shared'
 import {formatQuestion,formatDate} from '../utils/helpers'
 import Home from './Home'
+import HomeTwo from './HomeTwo'
 import LoadingBar from 'react-redux-loading'
 import LeaderBoard from './Leaderboard'
 import Logins from './Logins'
@@ -35,17 +36,12 @@ class App extends Component {
              <Switch>
              <Route path='/' exact component={Home} />
              <Route path='/add' exact component={UserQuestion} />
-
-             <Route path='/leaderBoard' exact component={()=><LeaderBoard users={this.props.users} questions={this.props.questions}/>} />
+             <Route path='/leaderBoard' exact component={LeaderBoard} />
              <Route exact path="/questions/:id" component={Polls} />
              <Route path='/logins' exact component={empty} />
              <Route path='/logout' exact component={Logout} />
-             {this.props.questionIds.map((id)=>(
-             <Route path='/ansque' exact component={()=><li key={id}><AnsQuestion id={id}/></li>} />
-             ))}
-             {this.props.questionIds.map((id)=>(
-             <Route path='/unansque' exact component={()=><li key={id}><UnansQuestion id={id}/></li>} />
-              ))}
+             <Route path='/ansque' exact component={HomeTwo} />
+             <Route path='/unansque' exact component={Home} />
              <Route path="*" component={NotFound}/>
              </Switch>
            </div>}

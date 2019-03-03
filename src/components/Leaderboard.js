@@ -23,14 +23,7 @@ class Leaderboard extends Component {
     }
     return values;
   }
-
-
-
-
     const {questions,users}=this.props
-    console.log(users)
-
-
       const {authedUser}=this.props
       let menuItems = [];
       let scoreVal=[];
@@ -39,7 +32,7 @@ class Leaderboard extends Component {
       var values = Object.keys(users).map(function(key){
       return users[key];
       });
-      console.log(values)
+
       var sara=0;
       var tyl=0;
       var jon=0
@@ -60,8 +53,7 @@ class Leaderboard extends Component {
           "tylermcginnis": tyl,
           "johndoe":jon
        };
-       console.log(names)
-
+       console.log(values[0])
 
 
       values = sort(values,names)
