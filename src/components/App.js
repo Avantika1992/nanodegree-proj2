@@ -37,7 +37,6 @@ class App extends Component {
                 <Redirect to="/leaderBoard"  />
                 <Route path="/add" exact component={Logins} />
                 <Redirect to="/add"  />
-                
                 <h3>Please login to view the pages</h3></div>
           :<div>
              <Switch>
