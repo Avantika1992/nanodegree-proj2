@@ -1,5 +1,5 @@
 import React, { Component,Fragment } from 'react'
-import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {handleInitialData} from '../actions/shared'
 import {formatQuestion,formatDate} from '../utils/helpers'
@@ -31,7 +31,14 @@ class App extends Component {
         <Nav />
         <Route path='/logins' exact component={Logins} />
         {this.props.loading===true
-          ?<h3>Please login to view the pages</h3>
+          ?<div><Route path="/" exact component={Logins} />
+                <Redirect to="/"  />
+                <Route path="/leaderBoard" exact component={Logins} />
+                <Redirect to="/leaderBoard"  />
+                <Route path="/add" exact component={Logins} />
+                <Redirect to="/add"  />
+                
+                <h3>Please login to view the pages</h3></div>
           :<div>
              <Switch>
              <Route path='/' exact component={Home} />

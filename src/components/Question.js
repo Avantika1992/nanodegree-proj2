@@ -62,13 +62,17 @@ class Question extends Component {
           <form onSubmit={this.handleSubmit}>
           <input type="radio" name='ip'
     onChange={() => this.handleRadioButton('optionOne')}/>{optionOneText}
-          &emsp;-votes:{optionOneVotes}
-          &emsp;{optionOneVotes.length} out of {numUsers} votes:{(oponeVotes*100)/numUsers}%
+          <br/>
+          &emsp;Number of people voted:{optionOneVotes.length}
+          <br/>
+          &emsp;Percentage of people voted:{(oponeVotes*100)/numUsers}%
           <br/>
           <input type="radio" name='ip'
     onChange={() => this.handleRadioButton('optionTwo')}/>{optionTwoText}
-          &emsp;-votes:{optionTwoVotes}
-          &emsp;{optionTwoVotes.length} out of {numUsers} votes:{(optwoVotes*100)/numUsers}%
+          <br/>
+          &emsp;Number of people voted:{optionTwoVotes.length}
+          <br/>
+          &emsp;Percentage of people voted:{(optwoVotes*100)/numUsers}%
           <br/>
           <br/>
           {'Value Chosen:'}{this.state.value}
