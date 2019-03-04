@@ -33,33 +33,15 @@ class Leaderboard extends Component {
       return users[key];
       });
 
-      var sara=0;
-      var tyl=0;
-      var jon=0
+       var dict={}
+       for(var i=0;i<values.length;i++){
+         dict[values[i].id]=values[i].questions.length
+       }
 
-        for(var j=0;j<Object.values(questions).length;j++){
-          if(Object.values(questions)[j].author==='sarahedo'){
-            var sara=sara+1
-          }
-          if(Object.values(questions)[j].author==='tylermcginnis'){
-            var tyl=tyl+1
-          }
-          if(Object.values(questions)[j].author==='johndoe'){
-            var jon=jon+1
-          }
-        }
-        var names = {
-          "sarahedo": sara,
-          "tylermcginnis": tyl,
-          "johndoe":jon
-       };
-       console.log(values[0])
-
-
-      values = sort(values,names)
+      values = sort(values,dict)
       for(var i=0;i<values.length;i++){
-      const score=(Object.keys(values[i].answers).length+names[values[i].id])
-        menuItems.push( <div className='question'>
+      const score=(Object.keys(values[i].answers).length+dict[values[i].id])
+        menuItems.push( <li key={values[i].id}><div className='question'>
             <img
              src={values[i].avatarURL}
              alt={`Avatar of ${values[i].name}`}
@@ -72,7 +54,7 @@ class Leaderboard extends Component {
              <div className='horizontalLine'>
              &emsp;Answered Questions={Object.keys(values[i].answers).length}&emsp;
              <br/>
-             &emsp;Created Questions={names[values[i].id]}&emsp;
+             &emsp;Created Questions={dict[values[i].id]}&emsp;
 
              </div>
            </div>
@@ -82,7 +64,8 @@ class Leaderboard extends Component {
             <h2>&emsp;Score:{score}</h2>
 
            </div>
-          </div>);
+          </div>
+        </li>);
 
         }
 
