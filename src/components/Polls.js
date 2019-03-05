@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {formatQuestion,formatDate} from '../utils/helpers'
 import Question from './Question'
 import QuestionPage from './QuestionPage'
-
+import NotFound from './NotFound'
 
 
 class Polls extends Component {
@@ -13,12 +13,11 @@ class Polls extends Component {
     const {question}=this.props
     const {authedUser}=this.props
 
-    console.log(this.props.id)
+
     return (
 
       <div>
-          <Question id={this.props.id}/>
-
+          {!this.props.question?<NotFound/>:<Question id={this.props.id}/>}
       </div>
 
     )

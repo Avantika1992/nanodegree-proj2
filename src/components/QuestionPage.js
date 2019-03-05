@@ -9,7 +9,6 @@ class QuestionPage extends Component {
   render() {
     const {id}=this.props
     return (
-
        <div>
          <Question id={id}/>
        </div>
