@@ -30,6 +30,7 @@ class App extends Component {
           ?<div><Route path="/" exact component={Logins} />
                 <Route path="/leaderBoard" exact component={Logins} />
                 <Route path="/add" exact component={Logins} />
+                <Route path="/questions/:id" exact component={Logins} />
                 <h3>Please login to view the pages</h3></div>
           :<div>
              <Switch>

@@ -12,12 +12,14 @@ class Question extends Component {
   state={value:''}
   handleRadioButton(value) {
     this.setState({
-      value: value
+      value: value,
+      sub:false
     });
   }
   handleSubmit=(e)=>{
 
     e.preventDefault();
+    this.setState({sub:true})
     console.log('submitted,',this.state.value)
     saveQuestionAnswer({authedUser: this.props.authedUser,
                        qid: this.props.question.id,
@@ -46,7 +48,8 @@ class Question extends Component {
       <div className='question'>
       {Object.values(optionOneVotes).indexOf(authedUser) > -1?<h4>You selected: {optionOneText}</h4>:null}
       {Object.values(optionTwoVotes).indexOf(authedUser) > -1?<h4>You selected: {optionTwoText}</h4>:null}
-
+      {this.state.sub?
+        <div>
          <img
           src={avatar}
           alt={`Avatar of ${name}`}
@@ -86,6 +89,40 @@ class Question extends Component {
           </form>
           </div>
         </div>
+        </div>:
+        <div>
+         <img
+          src={avatar}
+          alt={`Avatar of ${name}`}
+          className='avatar'
+          />
+          &emsp;
+        <div className='verticalLine'>
+          &emsp;<b>{name} asks:</b>
+          <br/>
+          <div className='horizontalLine'>
+          &emsp;Would You Rather
+          <br/>
+          <form onSubmit={this.handleSubmit}>
+          <input type="radio" name='ip'
+    onChange={() => this.handleRadioButton('optionOne')}/>{optionOneText}
+          <br/>
+          <input type="radio" name='ip'
+    onChange={() => this.handleRadioButton('optionTwo')}/>{optionTwoText}
+          <br/>
+          {'Value Chosen:'}{this.state.value}
+          <br/>
+          <br/>
+          <input type='submit' name="submit" disabled={!this.state.value||
+            Object.values(optionOneVotes).indexOf(authedUser) > -1||
+            Object.values(optionTwoVotes).indexOf(authedUser) > -1
+          }
+          />
+          </form>
+          </div>
+        </div>
+        </div>
+}
        </div>
 
     )

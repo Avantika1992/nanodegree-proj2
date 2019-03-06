@@ -20,6 +20,7 @@ export function addQuestion(question){
 
 export function handleAddQuestion(optionOne,optionTwo){
   return(dispatch,getState)=>{
+    console.log(getState)
     const {authedUser}=getState()
     dispatch(showLoading())
     return saveQuestion({

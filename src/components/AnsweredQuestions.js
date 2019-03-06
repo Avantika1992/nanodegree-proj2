@@ -24,8 +24,9 @@ class AnsQuestion extends Component {
         optionOneText,optionTwoVotes
         ,optionTwoText,id,
       }=question
-    return (
       
+    return (
+
       <div className='question'>
 
       {Object.values(optionOneVotes).indexOf(authedUser) > -1||Object.values(optionTwoVotes).indexOf(authedUser) > -1?
