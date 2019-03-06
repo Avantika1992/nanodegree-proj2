@@ -25,13 +25,13 @@ class Polls extends Component {
 }
 
 function mapStateToProps ({authedUser, users, questions}, props) {
-  const question = questions[id];
   const id=props.match.params.id
+  const question = questions[id];
   return {
     id,
     question: question
-      ? formatQuestion(question, users[question.author], authedUser)
-      : null
+     ? formatQuestion(question, users[question.author], authedUser)
+     : null
   };
 }
 
